@@ -53,3 +53,9 @@ function playMentronome(counter=0){
 
   //Sets delay of recursion based on tempo.
   setTimeout(() => { playMentronome(counter); }, 60000/tempo);}
+
+function animateBlip(bpm:number){
+  let tempo:number = 60000/tempo;
+  const $blip:JQuery = $(".blip");
+  $blip.css("animation-duration" `${tempo}ms`);
+}
