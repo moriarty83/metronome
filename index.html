@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script defer type="module" src="/src/main.ts"></script>
+
+    <title>Vite App</title>
+  </head>
+    <body>
+    <div class="container">
+      <div class="subcontainer">
+        <div class="setting">
+          <label for="bpm">BPM</label><br>
+          <input type="number" name="bpm" id="bpm" value="60">
+        </div>
+        <div>
+          <label for="beats">Beats</label><br>
+          <select name="beats" id="beats" value="4">
+            <option value="7">7</option>
+            <option value="6">6</option>
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+        <div>
+          <br>
+          /
+        </div>
+        <div>
+          <label for="measure">Measure</label><br>
+          <select name="measure" id="measure" value="4">
+            <option value="8">8</option>
+            <option value="4">4</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        </div>
+      </div>
+    
+    <button type="button">Play Sound</button>
+  </div>
+
+    <!-- <audio controls>
+      <source src="/src/audio/wood_ block_01.wav" type="audio/wav">
+    Your browser does not support the audio element.
+    </audio> -->
+  </body>
+</html>
