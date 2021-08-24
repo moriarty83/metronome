@@ -7,57 +7,89 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script defer type="module" src="/src/main.ts"></script>
 
-    <title>Vite App</title>
+    <title>Metronome</title>
   </head>
     <body>
+      <header>
+        <h1 class=""><button class="" id="play-button">Play</button></h1>
+      </header>
+
     <div class="container body">
+
+      <!-- LEFT SIDE BPM SECTION -->
       <div class="subcontainer">
-        <div class="setting">
-          <label for="bpm">BPM</label><br>
-          <input type="number" name="bpm" id="bpm" value="60">
+        <div class="section title">
+          <p class="title">BPM</p>
         </div>
-        <div>
-          <label for="beats">Beats</label><br>
-          <select name="beats" id="beats" value="4">
-            <option value="7">7</option>
-            <option value="6">6</option>
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-        </div>
-        <div>
-          <br>
-          /
-        </div>
-        <div>
-          <label for="measure">Measure</label><br>
-          <select name="measure" id="measure" value="4">
-            <option value="8">8</option>
-            <option value="4">4</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
+
+        <div class="section">
+         <p class ="title subtitle" id="bpm-output"></p>
+
+          <!-- BPM SLIDE CONTAINER -->
+          <div class="slidecontainer">
+            <button class="setting-button minus" id="bpm-minus">-</button>
+            <input type="range" name="bpm-input" min="40" max="160" value="60" step="1" class="slider" id="bpm-input">
+            <button class="setting-button plus" id="bpm-plus">+</button>
+          </div>
+          
         </div>
       </div>
+      
+      <!-- CENTER SECTION -->
+      <div class="subcontainer blip-container">
+        <div class="blip glow">
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE TIME SIGNATURE SECTION -->
       <div class="subcontainer">
-        <div class="wrapper">
-          <div class="blip">
+        <div class="section title">
+        <p class="title">Time Signature</p>
+        </div>
+        <div class="section">
+          
+          <p class ="title subtitle"> 
+            <!-- Beats Output Text -->
+            <span id="beat-output">4</span>
+
+            <span id="Meter-output">    /    </span>
+
+            <!-- Meter Output Text -->
+            <span id="Meter-output">4</span>
+          </p>
+          
+          <div class="subsection">
+           <div class="slidecontainer">
+             <!-- Beats Slider -->
+             <button class="setting-button minus" id="beat-minus">-</button>
+             <input type="range" name="beat-input"  min="1" max="16" value="4" step="1" class="slider" id="beat-input">
+             <button class="setting-button plus" id="beat-plus">+</button>
+            </div>
+            <div class="slidecontainer">
+              <!-- Meter Slider -->
+             <button class="setting-button minus">-</button>
+             <input type="range" name="meter-input" min="1" max="5" value="4" step="1" class="slider" id="meter-input">
+             <button class="setting-button plus">+</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="subcontainer">
-      <button type="button">Play Sound</button>
-      </div>
+    </div>
+    
+      <div class="bottom-drawer">
+        <div class="drawer-handle">
+          <div class="up-arrow handle-content"></div>
+          <p class="handle-content">Show Songs</p>
+        </div>
+        <div class="drawer-content" id="drawer-content" style="display: none">
+          <div class="song-slides">
+
+          </div>
+        </div>
+          
 
     </div>
 
-    <!-- <audio controls>
-      <source src="/src/audio/wood_ block_01.wav" type="audio/wav">
-    Your browser does not support the audio element.
-    </audio> -->
   </body>
 </html>
