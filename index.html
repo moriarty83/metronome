@@ -50,26 +50,28 @@
           
           <p class ="title subtitle"> 
             <!-- Beats Output Text -->
-            <span id="beat-output">4</span>
+            <span id="beat-output"></span>
 
-            <span id="Meter-output">    /    </span>
+            <span id="slas">    /    </span>
 
             <!-- Meter Output Text -->
-            <span id="Meter-output">4</span>
+            <span id="meter-output"></span>
           </p>
           
           <div class="subsection">
-           <div class="slidecontainer">
-             <!-- Beats Slider -->
+
+            <!-- Beats Slider -->
+            <div class="slidecontainer">
              <button class="setting-button minus" id="beat-minus">-</button>
              <input type="range" name="beat-input"  min="1" max="16" value="4" step="1" class="slider" id="beat-input">
              <button class="setting-button plus" id="beat-plus">+</button>
             </div>
+
+            <!-- Meter Slider -->
             <div class="slidecontainer">
-              <!-- Meter Slider -->
-             <button class="setting-button minus">-</button>
-             <input type="range" name="meter-input" min="1" max="5" value="4" step="1" class="slider" id="meter-input">
-             <button class="setting-button plus">+</button>
+             <button class="setting-button minus" id="meter-minus">-</button>
+             <input type="range" name="meter-input" min="0" max="3" value="2" step="1" class="slider" id="meter-input">
+             <button class="setting-button plus" id="meter-plus">+</button>
             </div>
           </div>
         </div>
@@ -79,8 +81,8 @@
     
       <div class="bottom-drawer">
         <div class="drawer-handle">
-          <div class="up-arrow handle-content"></div>
-          <p class="handle-content">Show Songs</p>
+          <div class="up-arrow handle-content" id="arrow"></div>
+          <p class="handle-content" id="handle-text">Show Songs</p>
         </div>
         <div class="drawer-content" id="drawer-content" style="display: none">
           <div class="song-slides">

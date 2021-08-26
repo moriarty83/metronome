@@ -154,6 +154,16 @@ p.handle-content{
   cursor: pointer;
 }
 
+.down-arrow{
+  width: 0; 
+  height: 0; 
+  border-left: 4em solid transparent;
+  border-right: 4em solid transparent;
+  border-top: 2em solid #333;
+
+  cursor: pointer;
+}
+
 .drawer-content{
   display: flex;
   justify-content: space-around;
@@ -170,24 +180,28 @@ p.handle-content{
 .song-slides{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   width: 100%;
-  padding: 1em;
+  padding-bottom: 1em;
 
 }
 
 .song-slide{
-  margin: auto;
-  padding: 10px;
+  padding: 1em;
+  padding-bottom: 0em;
   background-color: #3498DB;
-  width: 15%;
+  width: 10em;
   box-shadow: 2px 2px 5px 5px black;
+  margin-top: 1em;
 }
 
 .song-title{
   text-align: center;
+  font-size: 1.5em;
 }
 
 .by-line{
+  width: 100%;
   text-align: center;
   color: white;
   font-size: 1rem;
