@@ -12,8 +12,8 @@ let meter:number = 2;
 // Audio FIles
 // Sound file by Sassaby, Creative Commons Lisence 1.0 - Edited by Christopher Moriarty 
 // https://freesound.org/people/Sassaby/sounds/533093/
-const weakBeat:HTMLMediaElement = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/tree/master/src/audio/wood_block_01.wav");
-const strongBeat:HTMLMediaElement = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/tree/master/src/audio/wood_block_03.wav");
+const weakBeat:HTMLMediaElement = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_01.wav");
+const strongBeat:HTMLMediaElement = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_03.wav");
 
 
 let mentronomeOn:boolean = false;
