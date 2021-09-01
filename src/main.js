@@ -1,4 +1,7 @@
-var myAPI = "8d7585614344fcdbb6bcd62c9bf1b7ce";
+"use strict";
+exports.__esModule = true;
+require("./style.css");
+// const myAPI:string = "8d7585614344fcdbb6bcd62c9bf1b7ce"
 // Basic Metronome Settings Variables with Default Values
 var tempo = 60;
 var beats = 4;
@@ -7,8 +10,8 @@ var meter = 2;
 // Audio FIles
 // Sound file by Sassaby, Creative Commons Lisence 1.0 - Edited by Christopher Moriarty 
 // https://freesound.org/people/Sassaby/sounds/533093/
-var weakBeat = new Audio("/src/audio/wood_block_01.wav");
-var strongBeat = new Audio("/src/audio/wood_block_03.wav");
+var weakBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_01.wav");
+var strongBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_03.wav");
 var mentronomeOn = false;
 // Data from API Request
 var savedData;
@@ -190,12 +193,12 @@ function toggleDrawer() {
     populateDrawer();
 }
 // Close Drawer Function. Needed to specifically close when Toggle is not wanted.
-function closeDrawer() {
-    if ($('#drawer-content').is(':visible')) {
-        $('#drawer-content').slideUp();
-        emptyDrawer();
-    }
-}
+// function closeDrawer(){
+//   if($('#drawer-content').is(':visible')){
+//     $('#drawer-content').slideUp();
+//     emptyDrawer();
+//   }
+// }
 // Function to empty song drawer
 function emptyDrawer() {
     $(".drawer-content").empty();
@@ -211,7 +214,6 @@ function populateDrawer() {
     console.log("BPM input is " + $("#bpm-input").val());
     // API request based on BPM
     $.ajax("https://api.getsongbpm.com/tempo/?api_key=8d7585614344fcdbb6bcd62c9bf1b7ce&bpm=" + +$("#bpm-input").val()).then(function (data) {
-        var testData = JSON.parse(data);
         savedData = JSON.parse(data);
         fillDrawer();
     });
