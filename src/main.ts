@@ -290,6 +290,13 @@ function populateDrawer()
   })
 }
 
+const truncateString = function(text:string, maxLength:number){
+  if (text.length > maxLength){
+    text = text.substring(0,maxLength)+"..."
+  }
+  return text;
+}
+
 // Fills the contents of the drawer with songs. 
 function fillDrawer(){
   console.log("Songs Displayed = "+ songsDisplayed);
@@ -301,24 +308,22 @@ function fillDrawer(){
   console.log("Songs Displayed Before For loop = "+ songsDisplayed);
   for (let i = songsDisplayed; i < songsDisplayed+10; i++) 
   {
-    console.log(songsDisplayed);
+    let artist:string = truncateString(savedData.tempo[i]["artist"]["name"], 15)
+    let title:string = truncateString(savedData.tempo[i]["song_title"], 30)
+    let image = savedData.tempo[i]["artist"]["img"] !== null ? savedData.tempo[i]["artist"]["img"] : "src/images/unknown-person-icon-16.jpg"
+    console.log(savedData.tempo[i]["artist"]["img"])
     // Add song slides.
     $(".song-slides").append(
       `<div class="song-slide">`+
-      `<h2 class="by-line">${savedData.tempo[i]["artist"]["name"]}</h2>`+
-      `<h1 class="song-title">${savedData.tempo[i]["song_title"]}</h1>`+
-      `<img src="${savedData.tempo[i]["artist"]["img"]}" alt="" class="song-image">`+
+      `<h2 class="by-line">${artist}</h2>`+
+      `<h1 class="song-title">${title}</h1>`+
+      `<img src="${image}" alt="" class="song-image">`+
       `<a class="view-song-link" href = "${savedData.tempo[i]["song_uri"]}" target="_blank">View on getSongBPM.com</a>`+
       `</div>`
     );
+
     
-    let title:string = $(".song-title").last().text()
-    console.log(title +":" + title.length);
-    if (title.length > 30){
-      title = title.substring(0,30)+"..."
-      $(".song-title").last().text(title)
-      console.log(title);
-    }
+    //$(".song-title").last().text(truncateString($(".song-title").last().text, 30))
     
     
   }

@@ -40,8 +40,8 @@ Conductor's Assistant:
 
 ###
 Issues
-- Song slide unification. 
+- Complete! Song slide unification. 
     - Due to longer artist names or artist tiltes, it is difficult to get slides to appear uniformly.
         - Possible Solution: make a function to check length of these fileds and adjust css to shrink text if too long.
         - Possible Solution: Find a text fit library to deploy.
-    - SOLUTION: Truncated titles of 30+ characters.
+    - SOLUTION: Truncated artist and titles. Set height of fields.
