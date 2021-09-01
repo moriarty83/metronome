@@ -1,4 +1,7 @@
-const myAPI:string = "8d7585614344fcdbb6bcd62c9bf1b7ce"
+
+import './style.css'
+
+// const myAPI:string = "8d7585614344fcdbb6bcd62c9bf1b7ce"
 
 // Basic Metronome Settings Variables with Default Values
 let tempo:number = 60;
@@ -254,12 +257,12 @@ function toggleDrawer(){
 
 
 // Close Drawer Function. Needed to specifically close when Toggle is not wanted.
-function closeDrawer(){
-  if($('#drawer-content').is(':visible')){
-    $('#drawer-content').slideUp();
-    emptyDrawer();
-  }
-}
+// function closeDrawer(){
+//   if($('#drawer-content').is(':visible')){
+//     $('#drawer-content').slideUp();
+//     emptyDrawer();
+//   }
+// }
 
 // Function to empty song drawer
 function emptyDrawer() {
@@ -280,7 +283,7 @@ function populateDrawer()
 
   console.log("BPM input is " + $("#bpm-input").val())
     // API request based on BPM
-  $.ajax(`https://api.getsongbpm.com/tempo/?api_key=8d7585614344fcdbb6bcd62c9bf1b7ce&bpm=${+$("#bpm-input").val()!}`).then((data)=>{let testData=JSON.parse(data); 
+  $.ajax(`https://api.getsongbpm.com/tempo/?api_key=8d7585614344fcdbb6bcd62c9bf1b7ce&bpm=${+$("#bpm-input").val()!}`).then((data)=>{ 
     savedData = JSON.parse(data);
 
     fillDrawer();
