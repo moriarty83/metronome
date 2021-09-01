@@ -2,16 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml+png" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
     <script defer type="module" src="/src/main.ts"></script>
 
-    <title>Metronome</title>
+    <title>Conductor's Assistant Metronome</title>
   </head>
     <body>
       <header>
-        <h1 class=""><button class="" id="play-button">Play</button></h1>
+        <h1>Conductor's Assistant Metronome</h1>
       </header>
 
     <div class="container body">
@@ -36,8 +41,12 @@
       </div>
       
       <!-- CENTER SECTION -->
-      <div class="subcontainer blip-container">
+      <div class="subcontainer metronome-container">
+        <button class="onoff-button" name="play" id="play-button">On / Off</button>
+
+        <div class= "blip-container">
         <div class="blip glow">
+        </div>
         </div>
       </div>
 
@@ -93,5 +102,9 @@
 
     </div>
 
+    <footer>
+      <p>Page by C. Marshall Moriarty</p>
+      <p>Songlists & API Courtesy of <a class="footer-link" href = "https://getsongbpm.org" target="_blank">getsongbpm.org</a></p>
+    </footer>
   </body>
 </html>
