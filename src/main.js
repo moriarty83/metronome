@@ -1,6 +1,3 @@
-"use strict";
-exports.__esModule = true;
-require("./style.css");
 var myAPI = "8d7585614344fcdbb6bcd62c9bf1b7ce";
 // Basic Metronome Settings Variables with Default Values
 var tempo = 60;
