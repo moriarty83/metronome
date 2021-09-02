@@ -1,5 +1,3 @@
-
-
 // Basic Metronome Settings Variables with Default Values
 let tempo:number = 60;
 let beats:number = 4;

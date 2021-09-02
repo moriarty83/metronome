@@ -1,20 +1,20 @@
 // Basic Metronome Settings Variables with Default Values
-var tempo = 60;
-var beats = 4;
+let tempo = 60;
+let beats = 4;
 // NOTE: Meter is actually raising 2 to the power of meter to get the output value.
-var meter = 2;
+let meter = 2;
 // Audio FIles
 // Sound file by Sassaby, Creative Commons Lisence 1.0 - Edited by Christopher Moriarty 
 // https://freesound.org/people/Sassaby/sounds/533093/
-var weakBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_01.wav");
-var strongBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_03.wav");
-var mentronomeOn = false;
+const weakBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_01.wav");
+const strongBeat = new Audio("https://raw.githubusercontent.com/moriarty83/metronome/master/src/audio/wood_block_03.wav");
+let mentronomeOn = false;
 // Data from API Request
-var savedData;
+let savedData;
 // Variables of inputs for Metronome Settings
-var $bpmInput = $('#bpm-input');
-var $beatInput = $('#beat-input');
-var $meterInput = $("#meter-input");
+const $bpmInput = $('#bpm-input');
+const $beatInput = $('#beat-input');
+const $meterInput = $("#meter-input");
 // Displays default blips.
 populateBlips();
 /////////////////////////////////////
@@ -23,7 +23,7 @@ populateBlips();
 // Populates BPM Text on initial load
 $("#bpm-output").text(tempo + " BPM");
 // Function to increase or decrease BPM used by + and - Buttons.
-var changeBPM = function (amount) {
+const changeBPM = (amount) => {
     // Amount is passed as either +1 or -1 from the buttons.
     tempo += amount;
     // Adjust slider value.
@@ -61,14 +61,13 @@ $("#play-button").on('click', function () {
 // Populates lights/blips based on beat count.
 function populateBlips() {
     $(".blip-container").empty();
-    for (var i = 0; i < beats; i++) {
+    for (let i = 0; i < beats; i++) {
         $(".blip-container").append('<div class="blip"></div>');
     }
 }
-function playMentronome(counter) {
-    if (counter === void 0) { counter = 0; }
+function playMentronome(counter = 0) {
     // Converts tempo to MS for timeout function below.
-    var tempoMS = 60000 / tempo;
+    let tempoMS = 60000 / tempo;
     beats = +$("#beat-input").val();
     // Breakout condition
     if (!mentronomeOn) {
@@ -90,14 +89,14 @@ function playMentronome(counter) {
     lightBlip(counter);
     counter += 1;
     //Sets timeout of recursion based on tempo.
-    setTimeout(function () { playMentronome(counter); }, tempoMS);
+    setTimeout(() => { playMentronome(counter); }, tempoMS);
 }
 // Lights Blips based on the Beats per Measure.
 function lightBlip(count) {
     // Identifies correct blip.
-    var blip = count % beats;
+    let blip = count % beats;
     // Turns all blips lights off.
-    var $blips = $(".blip").removeClass("active");
+    let $blips = $(".blip").removeClass("active");
     // Lights active blip.
     $blips.eq(blip).addClass("active");
 }
@@ -107,7 +106,7 @@ function lightBlip(count) {
 // Populates Beats Output on initial load
 $("#beat-output").text(beats);
 // Function to change Beat when + and - Buttons are Clicked.
-var changeBeat = function (amount) {
+const changeBeat = (amount) => {
     // Amount is either +1 or -1.
     beats += amount;
     (beats < 1) ? beats = 1 : beats = beats;
@@ -133,9 +132,9 @@ $("#beat-minus").on('click', function () { changeBeat(-1); });
 // METER ADJUSTMENT SECTION
 /////////////////////////////////////
 // Populates Meter Output on initial load
-$("#meter-output").text(Math.pow(2, meter));
+$("#meter-output").text(2 ** meter);
 // Function to change Meter when + and - Buttons are Clicked.
-var changeMeter = function (amount) {
+const changeMeter = (amount) => {
     // Amount is either +1 or -1.
     meter += amount;
     (meter < 0) ? meter = 0 : meter = meter;
@@ -151,7 +150,7 @@ $meterInput.on('input', function () {
 // Display Meter Function
 function displayMeter() {
     console.log(meter);
-    $("#meter-output").text(Math.pow(2, meter));
+    $("#meter-output").text(2 ** meter);
 }
 // Functionality to buttons to increase and decrease Meter
 $("#meter-plus").on('click', function () { changeMeter(1); });
@@ -160,9 +159,9 @@ $("#meter-minus").on('click', function () { changeMeter(-1); });
 // SONG DRAWER SECTION
 /////////////////////////////////////
 // Boolean to determine if drawer is open or closed
-var drawerOpen = false;
+let drawerOpen = false;
 // Number to track which/how many songs have been displayed.
-var songsDisplayed = 0;
+let songsDisplayed = 0;
 // Open drawer when handle is clicked.
 $(".drawer-handle").on('click', function () {
     toggleDrawer();
@@ -206,15 +205,15 @@ function populateDrawer() {
         return;
     }
     emptyDrawer();
-    $(".drawer-content").append("<div class=\"drawer-title\"><h1>Loading...</h1></div>");
+    $(".drawer-content").append(`<div class="drawer-title"><h1>Loading...</h1></div>`);
     console.log("BPM input is " + $("#bpm-input").val());
     // API request based on BPM
-    $.ajax("https://api.getsongbpm.com/tempo/?api_key=8d7585614344fcdbb6bcd62c9bf1b7ce&bpm=" + +$("#bpm-input").val()).then(function (data) {
+    $.ajax(`https://api.getsongbpm.com/tempo/?api_key=8d7585614344fcdbb6bcd62c9bf1b7ce&bpm=${+$("#bpm-input").val()}`).then((data) => {
         savedData = JSON.parse(data);
         fillDrawer();
     });
 }
-var truncateString = function (text, maxLength) {
+const truncateString = function (text, maxLength) {
     if (text.length > maxLength) {
         text = text.substring(0, maxLength) + "...";
     }
@@ -225,21 +224,21 @@ function fillDrawer() {
     console.log("Songs Displayed = " + songsDisplayed);
     console.log("Fill drawer Called");
     emptyDrawer();
-    $(".drawer-content").append("<div class=\"drawer-title\"><h1>Songs at " + $("#bpm-input").val() + " BPM</h1></div>");
-    $(".drawer-content").append("<div class=\"song-slides\"></div>");
+    $(".drawer-content").append(`<div class="drawer-title"><h1>Songs at ${$("#bpm-input").val()} BPM</h1></div>`);
+    $(".drawer-content").append(`<div class="song-slides"></div>`);
     console.log("Songs Displayed Before For loop = " + songsDisplayed);
-    for (var i = songsDisplayed; i < songsDisplayed + 10; i++) {
-        var artist = truncateString(savedData.tempo[i]["artist"]["name"], 15);
-        var title = truncateString(savedData.tempo[i]["song_title"], 30);
-        var image = savedData.tempo[i]["artist"]["img"] !== null ? savedData.tempo[i]["artist"]["img"] : "src/images/unknown-person-icon-16.jpg";
+    for (let i = songsDisplayed; i < songsDisplayed + 10; i++) {
+        let artist = truncateString(savedData.tempo[i]["artist"]["name"], 15);
+        let title = truncateString(savedData.tempo[i]["song_title"], 30);
+        let image = savedData.tempo[i]["artist"]["img"] !== null ? savedData.tempo[i]["artist"]["img"] : "src/images/unknown-person-icon-16.jpg";
         console.log(savedData.tempo[i]["artist"]["img"]);
         // Add song slides.
-        $(".song-slides").append("<div class=\"song-slide\">" +
-            ("<h2 class=\"by-line\">" + artist + "</h2>") +
-            ("<h1 class=\"song-title\">" + title + "</h1>") +
-            ("<img src=\"" + image + "\" alt=\"\" class=\"song-image\">") +
-            ("<a class=\"view-song-link\" href = \"" + savedData.tempo[i]["song_uri"] + "\" target=\"_blank\">View on getSongBPM.com</a>") +
-            "</div>");
+        $(".song-slides").append(`<div class="song-slide">` +
+            `<h2 class="by-line">${artist}</h2>` +
+            `<h1 class="song-title">${title}</h1>` +
+            `<img src="${image}" alt="" class="song-image">` +
+            `<a class="view-song-link" href = "${savedData.tempo[i]["song_uri"]}" target="_blank">View on getSongBPM.com</a>` +
+            `</div>`);
         //$(".song-title").last().text(truncateString($(".song-title").last().text, 30))
     }
     console.log("Songs Displayed = " + songsDisplayed);
@@ -247,12 +246,12 @@ function fillDrawer() {
     songsDisplayed = songsDisplayed + 10;
     console.log("Songs Displayed = " + songsDisplayed);
     // Keeps max songs to dispay at 50.
-    $(".drawer-content").append("<div class=\"button-container\"></div>");
+    $(".drawer-content").append(`<div class="button-container"></div>`);
     if (songsDisplayed > 10) {
-        $(".button-container").append("<button class=\"more-button\" name=\"previous\" id=\"previous-button\">Previous</button>");
+        $(".button-container").append(`<button class="more-button" name="previous" id="previous-button">Previous</button>`);
     }
     if (songsDisplayed < 50) {
-        $(".button-container").append("<button class=\"more-button\" name=\"next\" id=\"next-button\">Next</button>");
+        $(".button-container").append(`<button class="more-button" name="next" id="next-button">Next</button>`);
     }
 }
 // Listener on drawer-content to dectect click on the Previous button.
