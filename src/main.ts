@@ -92,15 +92,24 @@ function populateBlips(){
 }
 
 function playMentronome(counter=0){
-  // Converts tempo to MS for timeout function below.
-  let tempoMS = 60000/tempo;
-  beats = +$("#beat-input").val()!;
+
+
+
+
   // Breakout condition
   if(!mentronomeOn)
   {
     return;
   }
 
+  let timestamp:number = (new Date()).getTime();
+  let now = (new Date()).getTime();
+
+  // Converts tempo to MS for timeout function below.
+  let tempoMS = 60000/tempo;
+  beats = +$("#beat-input").val()!;
+
+  if(now-timestamp >= tempoMS){
   //Pauses and sets to beginning both sounds so they don't try to play over each other.
   strongBeat.pause();
   strongBeat.currentTime = 0;
@@ -120,11 +129,11 @@ function playMentronome(counter=0){
   // Lights up correct blip
   lightBlip(counter);
   counter += 1;
-
+  }
   //Sets timeout of recursion based on tempo.
   setTimeout(
     () => { playMentronome(counter); }, 
-    tempoMS);
+    10);
 }
 
 

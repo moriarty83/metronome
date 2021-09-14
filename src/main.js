@@ -1,3 +1,4 @@
+"use strict";
 // Basic Metronome Settings Variables with Default Values
 let tempo = 60;
 let beats = 4;
@@ -66,30 +67,34 @@ function populateBlips() {
     }
 }
 function playMentronome(counter = 0) {
-    // Converts tempo to MS for timeout function below.
-    let tempoMS = 60000 / tempo;
-    beats = +$("#beat-input").val();
     // Breakout condition
     if (!mentronomeOn) {
         return;
     }
-    //Pauses and sets to beginning both sounds so they don't try to play over each other.
-    strongBeat.pause();
-    strongBeat.currentTime = 0;
-    weakBeat.pause();
-    weakBeat.currentTime = 0;
-    //Decides which sound to play based on meter variable.
-    if (counter % beats === 0) {
-        strongBeat.play();
+    let timestamp = (new Date()).getTime();
+    let now = (new Date()).getTime();
+    // Converts tempo to MS for timeout function below.
+    let tempoMS = 60000 / tempo;
+    beats = +$("#beat-input").val();
+    if (now - timestamp >= tempoMS) {
+        //Pauses and sets to beginning both sounds so they don't try to play over each other.
+        strongBeat.pause();
+        strongBeat.currentTime = 0;
+        weakBeat.pause();
+        weakBeat.currentTime = 0;
+        //Decides which sound to play based on meter variable.
+        if (counter % beats === 0) {
+            strongBeat.play();
+        }
+        else {
+            weakBeat.play();
+        }
+        // Lights up correct blip
+        lightBlip(counter);
+        counter += 1;
     }
-    else {
-        weakBeat.play();
-    }
-    // Lights up correct blip
-    lightBlip(counter);
-    counter += 1;
     //Sets timeout of recursion based on tempo.
-    setTimeout(() => { playMentronome(counter); }, tempoMS);
+    setTimeout(() => { playMentronome(counter); }, 10);
 }
 // Lights Blips based on the Beats per Measure.
 function lightBlip(count) {
@@ -132,7 +137,7 @@ $("#beat-minus").on('click', function () { changeBeat(-1); });
 // METER ADJUSTMENT SECTION
 /////////////////////////////////////
 // Populates Meter Output on initial load
-$("#meter-output").text(2 ** meter);
+$("#meter-output").text(Math.pow(2, meter));
 // Function to change Meter when + and - Buttons are Clicked.
 const changeMeter = (amount) => {
     // Amount is either +1 or -1.
@@ -150,7 +155,7 @@ $meterInput.on('input', function () {
 // Display Meter Function
 function displayMeter() {
     console.log(meter);
-    $("#meter-output").text(2 ** meter);
+    $("#meter-output").text(Math.pow(2, meter));
 }
 // Functionality to buttons to increase and decrease Meter
 $("#meter-plus").on('click', function () { changeMeter(1); });
